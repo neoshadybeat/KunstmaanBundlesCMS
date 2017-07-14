@@ -168,25 +168,6 @@ abstract class BaseUser extends AbstractUser
     }
 
     /**
-     * @param ClassMetadata $metadata
-     */
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-        $metadata->addPropertyConstraint('username', new NotBlank());
-        $metadata->addPropertyConstraint('plainPassword', new NotBlank(array("groups" => array("Registration"))));
-        $metadata->addPropertyConstraint('email', new NotBlank());
-        $metadata->addPropertyConstraint('email', new Email());
-        $metadata->addConstraint(new UniqueEntity(array(
-            'fields'  => 'username',
-            'message' => 'errors.user.loginexists',
-        )));
-        $metadata->addConstraint(new UniqueEntity(array(
-            'fields'  => 'email',
-            'message' => 'errors.user.emailexists',
-        )));
-    }
-
-    /**
      * Return class name of form type used to add & edit users
      *
      * @return string
